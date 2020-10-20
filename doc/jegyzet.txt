@@ -1,0 +1,27 @@
+-szenzor:
+	-nedvesség 	(arduino kapcsolás RC)
+	-hő 		(chip)
+	-fény 		(chip)
+-beavatkozo:
+	-szelep		(szivattyús megoldás) -> áramfelvétel (visszaáramlás)
+
+
+- alkatrészek:
+	-nedvesség: 
+		TLC555CD SMD	
+			https://www.hestore.hu/prod_10029037.html
+		LMC555CM
+			https://lomex.hu/hu/webshop/#/search,89-08-12/stype,1
+	-hő:
+		TMP 35/36/37 (?)
+			https://hu.farnell.com/analog-devices/tmp36gt9z/ic-sensor-temp-to-92-3/dp/1438760?st=tmp%2036
+	-fény: 
+		VEML7700
+			https://hu.farnell.com/vishay/veml7700-tr/ambient-light-sensor-digital-i2c/dp/2783057?st=VEML
+	-szelep:
+		3.6ra nyitó mosfet tranzisztor: 
+		
+
+-figyelni:
+
+	gecko 3.3V jelszinteket szeret.
