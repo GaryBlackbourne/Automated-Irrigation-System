@@ -16,20 +16,20 @@ $EndDescr
 $Comp
 L Timer:TLC555xD U?
 U 1 1 5F9860E5
-P 4150 1450
-F 0 "U?" H 4150 2031 50  0000 C CNN
-F 1 "TLC555xD" H 4150 1940 50  0000 C CNN
-F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5000 1050 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/tlc555.pdf" H 5000 1050 50  0001 C CNN
-	1    4150 1450
+P 4700 1750
+F 0 "U?" H 4400 2100 50  0000 C CNN
+F 1 "TLC555xD" H 4950 2100 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5550 1350 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tlc555.pdf" H 5550 1350 50  0001 C CNN
+	1    4700 1750
 	1    0    0    -1  
 $EndComp
 $Comp
 L temalab_simb_library:STK3700_Exp_Conn J?
 U 1 1 5F9873F8
 P 1450 1350
-F 0 "J?" H 1475 1975 50  0000 C CNN
-F 1 "STK3700_Exp_Conn" H 1475 1884 50  0000 C CNN
+F 0 "J?" H 1750 700 50  0000 C CNN
+F 1 "STK3700_Exp_Conn" H 1500 1900 50  0000 C CNN
 F 2 "" H 1450 1350 50  0001 C CNN
 F 3 "https://www.silabs.com/documents/public/user-guides/efm32gg-stk3700-ug.pdf" H 1450 1350 50  0001 C CNN
 	1    1450 1350
@@ -110,4 +110,157 @@ F 3 "" H 2200 950 50  0001 C CNN
 	1    2200 950 
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F98F24B
+P 4700 2300
+F 0 "#PWR?" H 4700 2050 50  0001 C CNN
+F 1 "GND" H 4705 2127 50  0000 C CNN
+F 2 "" H 4700 2300 50  0001 C CNN
+F 3 "" H 4700 2300 50  0001 C CNN
+	1    4700 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 2300 4700 2150
+Wire Wire Line
+	5200 1550 5900 1550
+Text Label 5900 1550 0    50   ~ 0
+555_out
+Wire Wire Line
+	5200 1950 5450 1950
+Wire Wire Line
+	5450 1950 5450 2650
+Wire Wire Line
+	5450 2650 4000 2650
+Wire Wire Line
+	4000 2650 4000 1800
+Wire Wire Line
+	4000 1550 4200 1550
+$Comp
+L Device:C C?
+U 1 1 5F990048
+P 3700 1950
+F 0 "C?" H 3815 1996 50  0000 L CNN
+F 1 "C" H 3815 1905 50  0000 L CNN
+F 2 "" H 3738 1800 50  0001 C CNN
+F 3 "~" H 3700 1950 50  0001 C CNN
+	1    3700 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F9904FD
+P 3700 2300
+F 0 "#PWR?" H 3700 2050 50  0001 C CNN
+F 1 "GND" H 3705 2127 50  0000 C CNN
+F 2 "" H 3700 2300 50  0001 C CNN
+F 3 "" H 3700 2300 50  0001 C CNN
+	1    3700 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 2300 3700 2100
+Wire Wire Line
+	3700 1800 4000 1800
+Connection ~ 4000 1800
+Wire Wire Line
+	4000 1800 4000 1550
+$Comp
+L Device:R R?
+U 1 1 5F991169
+P 3700 1550
+F 0 "R?" H 3770 1596 50  0000 L CNN
+F 1 "R" H 3770 1505 50  0000 L CNN
+F 2 "" V 3630 1550 50  0001 C CNN
+F 3 "~" H 3700 1550 50  0001 C CNN
+	1    3700 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 1700 3700 1800
+Connection ~ 3700 1800
+Wire Wire Line
+	3700 1400 3700 1250
+Wire Wire Line
+	5600 1750 5600 2800
+Wire Wire Line
+	5600 2800 3400 2800
+Wire Wire Line
+	3400 2800 3400 1250
+Wire Wire Line
+	3400 1250 3700 1250
+Wire Wire Line
+	5200 1750 5600 1750
+$Comp
+L Device:R R?
+U 1 1 5F9975F8
+P 4100 1250
+F 0 "R?" V 3893 1250 50  0000 C CNN
+F 1 "R" V 3984 1250 50  0000 C CNN
+F 2 "" V 4030 1250 50  0001 C CNN
+F 3 "~" H 4100 1250 50  0001 C CNN
+	1    4100 1250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 1250 3700 1250
+Connection ~ 3700 1250
+Wire Wire Line
+	4250 1250 4700 1250
+Wire Wire Line
+	4700 1250 4700 1350
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5F998383
+P 4700 1050
+F 0 "#PWR?" H 4700 900 50  0001 C CNN
+F 1 "+3V3" H 4715 1223 50  0000 C CNN
+F 2 "" H 4700 1050 50  0001 C CNN
+F 3 "" H 4700 1050 50  0001 C CNN
+	1    4700 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 1050 4700 1250
+Connection ~ 4700 1250
+NoConn ~ 4200 1750
+NoConn ~ 4200 1950
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5F99928F
+P 6100 2000
+F 0 "#PWR?" H 6100 1850 50  0001 C CNN
+F 1 "+3V3" H 6115 2173 50  0000 C CNN
+F 2 "" H 6100 2000 50  0001 C CNN
+F 3 "" H 6100 2000 50  0001 C CNN
+	1    6100 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F9996AF
+P 6100 2400
+F 0 "#PWR?" H 6100 2150 50  0001 C CNN
+F 1 "GND" H 6105 2227 50  0000 C CNN
+F 2 "" H 6100 2400 50  0001 C CNN
+F 3 "" H 6100 2400 50  0001 C CNN
+	1    6100 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5F9999D5
+P 6100 2200
+F 0 "C?" H 6215 2246 50  0000 L CNN
+F 1 "C" H 6215 2155 50  0000 L CNN
+F 2 "" H 6138 2050 50  0001 C CNN
+F 3 "~" H 6100 2200 50  0001 C CNN
+	1    6100 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 2050 6100 2000
+Wire Wire Line
+	6100 2350 6100 2400
 $EndSCHEMATC
