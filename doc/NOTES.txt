@@ -25,3 +25,5 @@
 -figyelni:
 
 	gecko 3.3V jelszinteket szeret.
+
+git check
