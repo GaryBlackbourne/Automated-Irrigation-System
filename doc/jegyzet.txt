@@ -8,7 +8,7 @@
 
 - alkatrészek:
 	-nedvesség: 
-		TLC555CD SMD	
+		TLC555CD SMD	 (végleges)
 			https://www.hestore.hu/prod_10029037.html
 		LMC555CM
 			https://lomex.hu/hu/webshop/#/search,89-08-12/stype,1
