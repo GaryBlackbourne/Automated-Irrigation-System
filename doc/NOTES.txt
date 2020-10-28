@@ -26,7 +26,10 @@
 	-szivattyú:
 		Barwig 0333
 			https://www.conrad.hu/hu/kisfeszueltsegu-buvarszivattyu-12-vdc-12-lperc-6-m-barwig-0333-539082.html
-		
+		IRLML2502
+			https://www.hestore.hu/prod_10032850.html
+
+	- TODO: csatlakozók, soros csati, táp csati 12V
 
 -figyelni:
 
