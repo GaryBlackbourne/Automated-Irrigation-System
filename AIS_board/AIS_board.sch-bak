@@ -263,4 +263,61 @@ Wire Wire Line
 	6100 2050 6100 2000
 Wire Wire Line
 	6100 2350 6100 2400
+$Comp
+L Sensor_Temperature:LM75C U?
+U 1 1 5F99628C
+P 1700 3450
+F 0 "U?" H 1450 3900 50  0000 C CNN
+F 1 "LM75C" H 1900 3900 50  0000 C CNN
+F 2 "" H 1700 3450 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm75b.pdf" H 1700 3450 50  0001 C CNN
+	1    1700 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 3350 1050 3350
+Wire Wire Line
+	1300 3450 1050 3450
+Text Label 1050 3350 0    50   ~ 0
+SDA
+Text Label 1050 3450 0    50   ~ 0
+SCL
+NoConn ~ 1300 3550
+Wire Wire Line
+	1700 3950 2100 3950
+Wire Wire Line
+	2100 3950 2100 3550
+Wire Wire Line
+	2100 3550 2100 3450
+Connection ~ 2100 3550
+Wire Wire Line
+	2100 3450 2100 3350
+Connection ~ 2100 3450
+$Comp
+L power:GND #PWR?
+U 1 1 5F99B96D
+P 1700 4100
+F 0 "#PWR?" H 1700 3850 50  0001 C CNN
+F 1 "GND" H 1705 3927 50  0000 C CNN
+F 2 "" H 1700 4100 50  0001 C CNN
+F 3 "" H 1700 4100 50  0001 C CNN
+	1    1700 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 4100 1700 3950
+Connection ~ 1700 3950
+$Comp
+L temalab_simb_library:VMCU #PWR?
+U 1 1 5F99CD27
+P 1700 2800
+F 0 "#PWR?" H 1700 2650 50  0001 C CNN
+F 1 "VMCU" H 1715 2973 50  0000 C CNN
+F 2 "" H 1700 2800 50  0001 C CNN
+F 3 "" H 1700 2800 50  0001 C CNN
+	1    1700 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 2800 1700 2950
 $EndSCHEMATC
