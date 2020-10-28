@@ -23,6 +23,9 @@
 	-doboz:
 		G214C IP65 		
 			https://lomex.hu/hu/webshop/#/search,47-01-54/stype,1
+	-szivattyú:
+		Barwig 0333
+			https://www.conrad.hu/hu/kisfeszueltsegu-buvarszivattyu-12-vdc-12-lperc-6-m-barwig-0333-539082.html
 		
 
 -figyelni:
