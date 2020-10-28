@@ -20,6 +20,9 @@
 			https://hu.farnell.com/vishay/veml7700-tr/ambient-light-sensor-digital-i2c/dp/2783057?st=VEML
 	-szelep:
 		3.6ra nyitó mosfet tranzisztor: 
+	-doboz:
+		G214C IP65 		
+			https://lomex.hu/hu/webshop/#/search,47-01-54/stype,1
 		
 
 -figyelni:
