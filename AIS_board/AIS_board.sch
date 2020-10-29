@@ -515,7 +515,7 @@ Wire Notes Line
 Wire Notes Line
 	2850 2750 2850 550 
 Text Notes 2900 2750 0    50   ~ 0
-astable 555 timer, capacity sensor drive\n
+astable 555 timer, capacity sensor\n
 Wire Notes Line
 	2750 2900 4750 2900
 Wire Notes Line
