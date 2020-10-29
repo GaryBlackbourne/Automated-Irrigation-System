@@ -690,11 +690,7 @@ pump_control
 Text Notes 600  4450 0    50   ~ 0
 pump control circuit\n
 Wire Notes Line
-	500  550  2350 550 
-Wire Notes Line
-	2350 550  2350 2300
-Wire Notes Line
-	2350 2300 500  2300
+	2750 550  2750 2300
 Wire Notes Line
 	500  2300 500  550 
 Text Notes 550  2300 0    50   ~ 0
@@ -1031,4 +1027,27 @@ F 3 "" H 3450 1100 50  0001 C CNN
 	1    3450 1100
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	1850 1050 2100 1050
+Text Label 2100 1050 0    50   ~ 0
+cap_sensor_out
+Wire Notes Line
+	500  2300 2750 2300
+Wire Notes Line
+	500  550  2750 550 
+Wire Wire Line
+	1850 1250 2100 1250
+Text Label 2100 1250 0    50   ~ 0
+pump_control
+NoConn ~ 1100 1050
+NoConn ~ 1100 1150
+NoConn ~ 1100 1450
+NoConn ~ 1100 1550
+NoConn ~ 1100 1650
+NoConn ~ 1100 1750
+NoConn ~ 1850 1650
+NoConn ~ 1850 1550
+NoConn ~ 1850 1450
+NoConn ~ 1850 1350
+NoConn ~ 1850 1150
 $EndSCHEMATC
