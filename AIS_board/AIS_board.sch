@@ -331,28 +331,6 @@ Wire Wire Line
 	3800 1100 4350 1100
 Connection ~ 4350 1100
 $Comp
-L power:GND #PWR0113
-U 1 1 5F9ABF09
-P 5100 1250
-F 0 "#PWR0113" H 5100 1000 50  0001 C CNN
-F 1 "GND" H 5105 1077 50  0000 C CNN
-F 2 "" H 5100 1250 50  0001 C CNN
-F 3 "" H 5100 1250 50  0001 C CNN
-	1    5100 1250
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C?
-U 1 1 5F9AC313
-P 5100 1100
-F 0 "C?" H 5215 1146 50  0000 L CNN
-F 1 "0.1uF" H 5215 1055 50  0000 L CNN
-F 2 "" H 5138 950 50  0001 C CNN
-F 3 "~" H 5100 1100 50  0001 C CNN
-	1    5100 1100
-	1    0    0    -1  
-$EndComp
-$Comp
 L temalab_simb_library:VMCU #PWR0114
 U 1 1 5F9ACE61
 P 4350 800
@@ -448,11 +426,6 @@ Connection ~ 4350 950
 Wire Wire Line
 	4350 950  4350 1100
 Connection ~ 4850 950 
-Wire Wire Line
-	4850 950  5100 950 
-Connection ~ 5100 950 
-Wire Wire Line
-	5100 950  5400 950 
 $Comp
 L Connector:Screw_Terminal_01x02 J?
 U 1 1 5F9B56FA
@@ -669,13 +642,7 @@ Wire Notes Line
 Text Notes 6550 2400 0    50   ~ 0
 Temperature sensor
 Wire Notes Line
-	10100 750  10100 1700
-Wire Notes Line
-	10100 1700 8550 1700
-Wire Notes Line
 	8550 1700 8550 750 
-Wire Notes Line
-	10100 750  8550 750 
 Text Notes 9600 1700 0    50   ~ 0
 light sensor
 Wire Notes Line
@@ -932,4 +899,136 @@ Wire Notes Line
 	3000 7000 3000 5650
 Text Notes 3050 7000 0    50   ~ 0
 I2C\n
+$Comp
+L temalab_simb_library:VMCU #PWR?
+U 1 1 5FA905A2
+P 6700 1750
+F 0 "#PWR?" H 6700 1600 50  0001 C CNN
+F 1 "VMCU" H 6715 1923 50  0000 C CNN
+F 2 "" H 6700 1750 50  0001 C CNN
+F 3 "" H 6700 1750 50  0001 C CNN
+	1    6700 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5FA90954
+P 6700 1900
+F 0 "C?" H 6815 1946 50  0000 L CNN
+F 1 "C" H 6815 1855 50  0000 L CNN
+F 2 "" H 6738 1750 50  0001 C CNN
+F 3 "~" H 6700 1900 50  0001 C CNN
+	1    6700 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5FA90E51
+P 6700 2050
+F 0 "#PWR?" H 6700 1800 50  0001 C CNN
+F 1 "GND" H 6705 1877 50  0000 C CNN
+F 2 "" H 6700 2050 50  0001 C CNN
+F 3 "" H 6700 2050 50  0001 C CNN
+	1    6700 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5FAADC6D
+P 10100 1250
+F 0 "C?" H 10215 1296 50  0000 L CNN
+F 1 "C" H 10215 1205 50  0000 L CNN
+F 2 "" H 10138 1100 50  0001 C CNN
+F 3 "~" H 10100 1250 50  0001 C CNN
+	1    10100 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5FAAE048
+P 10450 1250
+F 0 "C?" H 10565 1296 50  0000 L CNN
+F 1 "C" H 10565 1205 50  0000 L CNN
+F 2 "" H 10488 1100 50  0001 C CNN
+F 3 "~" H 10450 1250 50  0001 C CNN
+	1    10450 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10100 1100 10250 1100
+Wire Wire Line
+	10100 1400 10250 1400
+Wire Wire Line
+	10250 1100 10250 950 
+Connection ~ 10250 1100
+Wire Wire Line
+	10250 1100 10450 1100
+$Comp
+L temalab_simb_library:VMCU #PWR?
+U 1 1 5FAB7DB6
+P 10250 950
+F 0 "#PWR?" H 10250 800 50  0001 C CNN
+F 1 "VMCU" H 10400 1050 50  0000 C CNN
+F 2 "" H 10250 950 50  0001 C CNN
+F 3 "" H 10250 950 50  0001 C CNN
+	1    10250 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5FAB833C
+P 10250 1450
+F 0 "#PWR?" H 10250 1200 50  0001 C CNN
+F 1 "GND" H 10255 1277 50  0000 C CNN
+F 2 "" H 10250 1450 50  0001 C CNN
+F 3 "" H 10250 1450 50  0001 C CNN
+	1    10250 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10250 1450 10250 1400
+Connection ~ 10250 1400
+Wire Wire Line
+	10250 1400 10450 1400
+Wire Notes Line
+	10850 1700 10850 750 
+Wire Notes Line
+	8550 1700 10850 1700
+Wire Notes Line
+	8550 750  10850 750 
+Wire Wire Line
+	4850 950  5400 950 
+$Comp
+L temalab_simb_library:VMCU #PWR?
+U 1 1 5FAC62E3
+P 3450 800
+F 0 "#PWR?" H 3450 650 50  0001 C CNN
+F 1 "VMCU" H 3465 973 50  0000 C CNN
+F 2 "" H 3450 800 50  0001 C CNN
+F 3 "" H 3450 800 50  0001 C CNN
+	1    3450 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5FAC6AC1
+P 3450 950
+F 0 "C?" H 3565 996 50  0000 L CNN
+F 1 "C" H 3565 905 50  0000 L CNN
+F 2 "" H 3488 800 50  0001 C CNN
+F 3 "~" H 3450 950 50  0001 C CNN
+	1    3450 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5FAC7366
+P 3450 1100
+F 0 "#PWR?" H 3450 850 50  0001 C CNN
+F 1 "GND" H 3455 927 50  0000 C CNN
+F 2 "" H 3450 1100 50  0001 C CNN
+F 3 "" H 3450 1100 50  0001 C CNN
+	1    3450 1100
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
