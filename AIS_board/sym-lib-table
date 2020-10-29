@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name temalab_simb_library)(type Legacy)(uri /home/geri/dev/KICAD/temalab/temalab_simb_library.lib)(options "")(descr ""))
+  (lib (name temalab_simb_library)(type Legacy)(uri ${KIPRJMOD}/temalab_simb_library.lib)(options "")(descr ""))
+  (lib (name IRLML2502)(type Legacy)(uri ${KIPRJMOD}/IRLML2502.lib)(options "")(descr ""))
 )
