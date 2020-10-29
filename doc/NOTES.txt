@@ -32,8 +32,9 @@
 		LPV-35-12
 			https://lomex.hu/pdf/(mw)_lpv-35-spec.pdf	
 		
-
-	- TODO: csatlakozók, soros csati, táp csati
+	-sorkapcsok:
+		DG300-5.0-02P-12-00A(H)
+			https://www.hestore.hu/prod_10039569.html
 
 -figyelni:
 
