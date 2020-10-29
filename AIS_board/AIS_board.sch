@@ -582,26 +582,12 @@ F 3 "~" H 7500 3300 50  0001 C CNN
 	1    7500 3300
 	1    0    0    -1  
 $EndComp
-$Comp
-L Connector:Barrel_Jack J?
-U 1 1 5F9F4F7B
-P 6750 3400
-F 0 "J?" H 6807 3725 50  0000 C CNN
-F 1 "Barrel_Jack" H 6807 3634 50  0000 C CNN
-F 2 "" H 6800 3360 50  0001 C CNN
-F 3 "~" H 6800 3360 50  0001 C CNN
-	1    6750 3400
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7050 3300 7250 3300
-Wire Wire Line
-	7300 3400 7300 3500
 Wire Wire Line
 	7300 3500 7050 3500
 Wire Wire Line
 	7300 3500 7300 3600
-Connection ~ 7300 3500
 $Comp
 L power:GND #PWR0118
 U 1 1 5F9FCA1E
@@ -1127,4 +1113,17 @@ F 3 "~" H 10100 950 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	9700 950  9950 950 
+$Comp
+L Connector:Barrel_Jack_Switch J?
+U 1 1 5FB62767
+P 6750 3400
+F 0 "J?" H 6807 3717 50  0000 C CNN
+F 1 "Barrel_Jack_Switch" H 6807 3626 50  0000 C CNN
+F 2 "" H 6800 3360 50  0001 C CNN
+F 3 "~" H 6800 3360 50  0001 C CNN
+	1    6750 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7300 3400 7050 3400
 $EndSCHEMATC
