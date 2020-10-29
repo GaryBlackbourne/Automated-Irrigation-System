@@ -1,4 +1,4 @@
-update=2020. okt. 29., csütörtök, 13:25:36 CET
+update=2020. okt. 29., csütörtök, 15:19:39 CET
 version=1
 last_client=kicad
 [general]
