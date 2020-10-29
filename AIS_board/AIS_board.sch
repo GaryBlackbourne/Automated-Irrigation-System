@@ -64,16 +64,14 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0104
 U 1 1 5F989356
-P 600 950
-F 0 "#PWR0104" H 600 700 50  0001 C CNN
-F 1 "GND" H 605 777 50  0000 C CNN
-F 2 "" H 600 950 50  0001 C CNN
-F 3 "" H 600 950 50  0001 C CNN
-	1    600  950 
+P 950 950
+F 0 "#PWR0104" H 950 700 50  0001 C CNN
+F 1 "GND" H 955 777 50  0000 C CNN
+F 2 "" H 950 950 50  0001 C CNN
+F 3 "" H 950 950 50  0001 C CNN
+	1    950  950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	600  950  1100 950 
 Wire Wire Line
 	1100 1350 800  1350
 Wire Wire Line
@@ -318,7 +316,7 @@ Connection ~ 5400 1350
 Wire Wire Line
 	5400 1350 5400 1450
 Wire Wire Line
-	4850 1500 5100 1500
+	4850 1500 4950 1500
 Text Label 5100 1500 0    50   ~ 0
 555_out
 Wire Wire Line
@@ -1028,7 +1026,7 @@ F 3 "" H 3450 1100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1850 1050 2100 1050
+	1850 1050 1950 1050
 Text Label 2100 1050 0    50   ~ 0
 cap_sensor_out
 Wire Notes Line
@@ -1036,7 +1034,7 @@ Wire Notes Line
 Wire Notes Line
 	500  550  2750 550 
 Wire Wire Line
-	1850 1250 2100 1250
+	1850 1250 1950 1250
 Text Label 2100 1250 0    50   ~ 0
 pump_control
 NoConn ~ 1100 1050
@@ -1050,4 +1048,70 @@ NoConn ~ 1850 1550
 NoConn ~ 1850 1450
 NoConn ~ 1850 1350
 NoConn ~ 1850 1150
+$Comp
+L Connector:TestPoint_Probe TP?
+U 1 1 5FB1A2AE
+P 800 1350
+F 0 "TP?" H 1100 1400 50  0000 R CNN
+F 1 "SDC_test" H 1100 1500 50  0000 R CNN
+F 2 "" H 1000 1350 50  0001 C CNN
+F 3 "~" H 1000 1350 50  0001 C CNN
+	1    800  1350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	950  950  1100 950 
+$Comp
+L Connector:TestPoint_Probe TP?
+U 1 1 5FB20B60
+P 800 1250
+F 0 "TP?" V 1090 1305 50  0000 C CNN
+F 1 "SDA_test" V 1000 1350 50  0000 C CNN
+F 2 "" H 1000 1250 50  0001 C CNN
+F 3 "~" H 1000 1250 50  0001 C CNN
+	1    800  1250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint_Probe TP?
+U 1 1 5FB2117F
+P 1950 1250
+F 0 "TP?" V 2150 1400 50  0000 L CNN
+F 1 "pump_test" V 2050 1400 50  0000 L CNN
+F 2 "" H 2150 1250 50  0001 C CNN
+F 3 "~" H 2150 1250 50  0001 C CNN
+	1    1950 1250
+	0    1    1    0   
+$EndComp
+Connection ~ 1950 1250
+Wire Wire Line
+	1950 1250 2100 1250
+$Comp
+L Connector:TestPoint_Probe TP?
+U 1 1 5FB21916
+P 1950 1050
+F 0 "TP?" V 2050 1550 50  0000 L CNN
+F 1 "cap_test" V 2049 1203 50  0000 L CNN
+F 2 "" H 2150 1050 50  0001 C CNN
+F 3 "~" H 2150 1050 50  0001 C CNN
+	1    1950 1050
+	0    1    1    0   
+$EndComp
+Connection ~ 1950 1050
+Wire Wire Line
+	1950 1050 2100 1050
+$Comp
+L Connector:TestPoint_Probe TP?
+U 1 1 5FB24D48
+P 4950 1500
+F 0 "TP?" V 5000 1650 50  0000 L CNN
+F 1 "timer_test" V 5100 1400 50  0000 L CNN
+F 2 "" H 5150 1500 50  0001 C CNN
+F 3 "~" H 5150 1500 50  0001 C CNN
+	1    4950 1500
+	0    1    1    0   
+$EndComp
+Connection ~ 4950 1500
+Wire Wire Line
+	4950 1500 5100 1500
 $EndSCHEMATC
