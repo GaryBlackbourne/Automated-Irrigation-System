@@ -335,41 +335,34 @@ Text Label 5150 1500 0    50   ~ 0
 Wire Wire Line
 	4400 1300 4400 1100
 Wire Wire Line
-	4400 950  5000 950 
-Wire Wire Line
 	3900 1900 3850 1900
 Wire Wire Line
 	3850 1900 3850 1100
 Wire Wire Line
 	3850 1100 4400 1100
 Connection ~ 4400 1100
-Wire Wire Line
-	4400 1100 4400 950 
 $Comp
 L power:GND #PWR?
 U 1 1 5F9ABF09
-P 5000 1250
-F 0 "#PWR?" H 5000 1000 50  0001 C CNN
-F 1 "GND" H 5005 1077 50  0000 C CNN
-F 2 "" H 5000 1250 50  0001 C CNN
-F 3 "" H 5000 1250 50  0001 C CNN
-	1    5000 1250
+P 5150 1250
+F 0 "#PWR?" H 5150 1000 50  0001 C CNN
+F 1 "GND" H 5155 1077 50  0000 C CNN
+F 2 "" H 5150 1250 50  0001 C CNN
+F 3 "" H 5150 1250 50  0001 C CNN
+	1    5150 1250
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5F9AC313
-P 5000 1100
-F 0 "C?" H 5115 1146 50  0000 L CNN
-F 1 "0.1uF" H 5115 1055 50  0000 L CNN
-F 2 "" H 5038 950 50  0001 C CNN
-F 3 "~" H 5000 1100 50  0001 C CNN
-	1    5000 1100
+P 5150 1100
+F 0 "C?" H 5265 1146 50  0000 L CNN
+F 1 "0.1uF" H 5265 1055 50  0000 L CNN
+F 2 "" H 5188 950 50  0001 C CNN
+F 3 "~" H 5150 1100 50  0001 C CNN
+	1    5150 1100
 	1    0    0    -1  
 $EndComp
-Connection ~ 5000 950 
-Wire Wire Line
-	5000 950  5450 950 
 $Comp
 L temalab_simb_library:VMCU #PWR?
 U 1 1 5F9ACE61
@@ -381,9 +374,6 @@ F 3 "" H 4400 800 50  0001 C CNN
 	1    4400 800 
 	1    0    0    -1  
 $EndComp
-Connection ~ 4400 950 
-Wire Wire Line
-	4400 800  4400 950 
 $Comp
 L Device:R R?
 U 1 1 5F9B5FBE
@@ -447,4 +437,31 @@ F 3 "" H 1850 4200 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1850 4200 1850 3900
+Wire Wire Line
+	4400 800  4400 950 
+$Comp
+L Device:R R?
+U 1 1 5F9AC8C2
+P 4900 1100
+F 0 "R?" H 4970 1146 50  0000 L CNN
+F 1 "R" H 4970 1055 50  0000 L CNN
+F 2 "" V 4830 1100 50  0001 C CNN
+F 3 "~" H 4900 1100 50  0001 C CNN
+	1    4900 1100
+	1    0    0    -1  
+$EndComp
+Connection ~ 4900 1500
+Wire Wire Line
+	4900 1250 4900 1500
+Wire Wire Line
+	4400 950  4900 950 
+Connection ~ 4400 950 
+Wire Wire Line
+	4400 950  4400 1100
+Connection ~ 4900 950 
+Wire Wire Line
+	4900 950  5150 950 
+Connection ~ 5150 950 
+Wire Wire Line
+	5150 950  5450 950 
 $EndSCHEMATC
