@@ -1,4 +1,4 @@
-update=2020. okt. 30., péntek, 09:56:10 CET
+update=2020. okt. 30., péntek, 10:00:00 CET
 version=1
 last_client=kicad
 [general]
@@ -25,7 +25,7 @@ ERC_TestSimilarLabels=1
 [pcbnew]
 version=1
 PageLayoutDescrFile=
-LastNetListRead=
+LastNetListRead=AIS_board.net
 CopperLayerCount=2
 BoardThickness=1.55
 AllowMicroVias=0
