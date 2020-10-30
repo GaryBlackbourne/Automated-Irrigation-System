@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name temalab)(type KiCad)(uri ${KIPRJMOD}/temalab.pretty)(options "")(descr ""))
+)
