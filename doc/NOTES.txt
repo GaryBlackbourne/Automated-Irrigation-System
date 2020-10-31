@@ -24,10 +24,12 @@
 		G214C IP65 		
 			https://lomex.hu/hu/webshop/#/search,47-01-54/stype,1
 	-szivattyú:
-		Barwig 0333
+		Barwig 0333:
 			https://www.conrad.hu/hu/kisfeszueltsegu-buvarszivattyu-12-vdc-12-lperc-6-m-barwig-0333-539082.html
-		IRLML2502
+		IRLML2502:
 			https://www.hestore.hu/prod_10032850.html
+		dióda:
+			https://www.hestore.hu/prod_10000050.html
 	-táp:
 		LPV-35-12
 			https://lomex.hu/pdf/(mw)_lpv-35-spec.pdf	
