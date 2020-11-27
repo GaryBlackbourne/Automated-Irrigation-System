@@ -1,0 +1,35 @@
+Board - schematic in repository
+
+EFM32GG Giant Gecko starter kit
+
+TLC555CD SMD - (moisture sensor timer)
+	https://www.hestore.hu/prod_10029037.html 
+	100.290.37
+LM75C - (temperature)
+	https://www.hestore.hu/prod_10025446.html
+	100.254.46
+VEML7700 - (ligt)
+	https://hu.farnell.com/vishay/veml7700-tt/ambient-light-sensor-i2c-3-6v/dp/2627812
+	2627812
+IRLML 2502 - (transistor)
+	https://www.hestore.hu/prod_10032850.html
+	100.328.50
+1N4148-0805 - (diode)
+	https://www.hestore.hu/prod_10000050.html
+	100.000.50
+
+
+
+SMD:
+	R:
+		4.7k x 2
+		1    x 1
+		1M   x 1
+		10   x 1
+
+	RA, RB -> to be optimised
+	
+	C:
+		100n x 4
+		10u  x 1
+
