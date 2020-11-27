@@ -17,9 +17,12 @@ IRLML 2502 - (transistor)
 1N4148-0805 - (diode)
 	https://www.hestore.hu/prod_10000050.html
 	100.000.50
-
-
-
+LPV-35-12 - (pwr supply) [témalaborbol kimarad]
+	https://lomex.hu/pdf/(mw)_lpv-35-spec.pdf
+	
+Barwig 0333 - (pump) [témalaborbol kimarad]
+	https://www.conrad.hu/hu/kisfeszueltsegu-buvarszivattyu-12-vdc-12-lperc-6-m-barwig-0333-539082.html
+	
 SMD:
 	R:
 		4.7k x 2
