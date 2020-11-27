@@ -22,6 +22,9 @@ LPV-35-12 - (pwr supply) [témalaborbol kimarad]
 	
 Barwig 0333 - (pump) [témalaborbol kimarad]
 	https://www.conrad.hu/hu/kisfeszueltsegu-buvarszivattyu-12-vdc-12-lperc-6-m-barwig-0333-539082.html
+
+MC000052 - (screw terminal) x 3
+	https://hu.farnell.com/multicomp/mc000052/terminal-block-wire-to-brd-2pos/dp/2008023
 	
 SMD:
 	R:
