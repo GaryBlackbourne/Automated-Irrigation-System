@@ -5,6 +5,7 @@ This project is the successor of the watering-system project, which is to be dis
 The project is in alpha state.
 
 Current state:
-  - Documentation incomplete, after the first test with finished hardware, it will be completed
+  - The project only contains data about the head unit hardware (to be extended)
+  - Documentation completed
   - Board schematic and layout are in final state
   - source code for MCU is missing, waiting for board manufacturer
