@@ -12,7 +12,7 @@ VEML7700 - (ligt)
 	https://hu.farnell.com/vishay/veml7700-tt/ambient-light-sensor-i2c-3-6v/dp/2627812
 	2627812
 IRLML 2502 - (transistor)
-	https://www.hestore.hu/prod_10032850.html
+		
 	100.328.50
 1N4148-0805 - (diode)
 	https://www.hestore.hu/prod_10000050.html
