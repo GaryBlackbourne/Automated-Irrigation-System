@@ -45,3 +45,32 @@ I started to change the code in the sample project, and comment out anything tha
 This makes me think that something was not properly configured with the original project.
 
 Simplicity Studio 5s new project structure is much more chaotic for this type of small projects. I was thinking about creating a raw project where all unnecessary stuff is removed. Basic configuration, and learning could be much efficient that way.
+
+## 19/03/21
+
+### Hardware bugfixes:
+
+An issue has been found in the 555 timer-based capacity sensor. The RA and RB resistors were soldered in a wrong order, which caused extremely high duty-cycle while measured. After the exchange, the board is fully functional, perfect 50% duty-cycle was measured with oscilloscope, frequency was shifted when the capacity connected to the board changed. There is no hardware malfunction discovered yet, the external power-, and drive systems are to be tested.
+
+### Change in prototype:
+
+No explanations were found concerning the Pulse Counter malfunction, in order to speed up the development process, this bug is no longer on todo list. I have a working example with stk3700, and planned to develop one with ESP.
+
+### New Controler:
+
+Experiments started with ESP32 development. Used development tools:
+- espressif framework
+- vs code
+- platformIO plugin
+
+Arduino framework was planned to be used, but with arduino, there seem to be no way to use the PCNT module of the chip.
+Further research needs to be done about the characteristics of this module (especially frequency).
+
+The ESP32 uses freeRTOS system, which is preinstalled. This might come handy when I develop networking while reading different sensor values. Although learning freeRTOS system is now a prioritized task.
+
+### New platform:
+
+Espressif controllers can be developed with Arduino IDE, there own IDE, or platformIO. The choice for this project is platformIO, because of the comfortable code completion, function tracking and compatibility with both frameworks (Arduino / Espressif-SDK).
+
+Minor problems occcured during the first compile, after getting used to the environment problems were solved.
+A basic project was created, testing GPIO-s with a 'blink' functionality.
