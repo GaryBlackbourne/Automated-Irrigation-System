@@ -74,3 +74,24 @@ Espressif controllers can be developed with Arduino IDE, there own IDE, or platf
 
 Minor problems occcured during the first compile, after getting used to the environment problems were solved.
 A basic project was created, testing GPIO-s with a 'blink' functionality.
+
+
+## 03/04/21
+
+For easier development I have installed a pure ESP-IDF. Removed platformIO, I try to work with only the framework, and compile my code via terminal. Installation was tough, fish script doesnt seem to work, I needed to use bash. This should be taken care of in the near future to remove a large handicap.
+The problem lies with environment variables, I'll write down the solution, as soon as I find them.
+
+## Tutorials were followed:
+https://www.youtube.com/watch?v=5IuZ-E8Tmhg
+https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html *note that the fish scripts are failed to work*
+
+## First test:
+First test project, a simple blink example was successfully uploaded to the chip. I used VS Code, but mostly integrated terminal. Further research needed, how to embed a terminal like bash or fish, into VS Code, and how to get fish working.
+
+For now, I can create projects manually, and compile them from CLI using ESP-IDFs `idf.py build`, and `idf.py flash -p /dev/ttyUSB0` commands. Debugging is not available for the time being.
+
+Tasks are given:
+
+-find fish-s problem in the scripts
+-integrate fish, or bash into VS Code
+-create a project, and test GPIO, I2C, and PCNT modules.
