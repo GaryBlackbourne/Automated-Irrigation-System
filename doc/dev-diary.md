@@ -81,11 +81,11 @@ A basic project was created, testing GPIO-s with a 'blink' functionality.
 For easier development I have installed a pure ESP-IDF. Removed platformIO, I try to work with only the framework, and compile my code via terminal. Installation was tough, fish script doesnt seem to work, I needed to use bash. This should be taken care of in the near future to remove a large handicap.
 The problem lies with environment variables, I'll write down the solution, as soon as I find them.
 
-## Tutorials were followed:
+### Tutorials were followed:
 https://www.youtube.com/watch?v=5IuZ-E8Tmhg
 https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html *note that the fish scripts are failed to work*
 
-## First test:
+### First test:
 First test project, a simple blink example was successfully uploaded to the chip. I used VS Code, but mostly integrated terminal. Further research needed, how to embed a terminal like bash or fish, into VS Code, and how to get fish working.
 
 For now, I can create projects manually, and compile them from CLI using ESP-IDFs `idf.py build`, and `idf.py flash -p /dev/ttyUSB0` commands. Debugging is not available for the time being.
@@ -95,3 +95,62 @@ Tasks are given:
 -find fish-s problem in the scripts
 -integrate fish, or bash into VS Code
 -create a project, and test GPIO, I2C, and PCNT modules.
+
+## 04/04/21
+
+New morning, new thoughts. I seem to have found a solution for the problem. It seems the init script of fish does not work as intended. I set bash as the embedded terminal for VS Code, and created an alias in `.bash_aliases`, for initializing the shell for code compiling.
+
+The alias:
+```bash
+alias idfinit=". $HOME/<idf-directory>/export.sh"
+```
+
+The `export.sh` code was copied from installation manual, and does all the setup work (initializing environment variables for example). The main problem is that bash can not execute any init command, and fish is still not working with the given scripts. By the way, fish has an argument, `-C` which does exactly what we need here.
+If I find a way to solve this issue, I change my shell in VS Code.
+
+### New project initialization:
+1. create a directory
+2. save as workspace, then setup the workspace terminal with the following JSON:
+
+``` JSON
+{
+"folders": [
+  {
+    "path": "."
+  }
+],
+  "settings": {
+
+    "terminal.integrated.shell.linux": "/usr/bin/bash",
+    "terminal.integrated.shellArgs.linux": [
+    ]
+  }
+}
+```
+These settings are to set bash as default shell. (this move might be temporary due to bash / fish support difference mentioned above)
+3. after saving workspace, allow it to modify embedded shell
+4. open the terminal, and write `idfinit` to initialize shell for development
+5. setup project, using `idf.py create-project`
+  - `--help` is useful argument to find out how to do that
+  - `idf.py create-project <project-name> -p . ` will create a new project directory in current folder, and initialize project. The output should be:
+
+  ```
+  Executing action: create-project
+  The project was created in <project-directory>
+
+  ```
+  - this instruction creates a `CMakeLists.txt`, a `main` directory, `CMakeLists.txt` inside this directory, and `esp_gpio_test.c` file.
+6. to make includes work, we have to set the includePath setting
+  - there should be a driectory called `.vscode` next to the project directory, and there is a file called `c_cpp_properties.json` in it.
+  - in this file we can append the `includePath` section if needed
+  - `/home/geri/dev/esp-idf/**` line adds the IDF directory
+  - now includes should work (and ctr + LMB helps to track)
+7. To build, the working directory should be the one containing, the main source file
+8. build is done via `idf.py build` command
+9. flash is done via `idf.py -p /dev/ttyUSB0 flash` commands
+
+### First handmade project
+
+Using the method described above, I have created a simple task, which initialized a simple GPIO port, and sets it to high level.
+
+No errors occurred.
