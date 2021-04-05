@@ -139,11 +139,11 @@ These settings are to set bash as default shell. (this move might be temporary d
   The project was created in <project-directory>
 
   ```
-  - this instruction creates a `CMakeLists.txt`, a `main` directory, `CMakeLists.txt` inside this directory, and `esp_gpio_test.c` file.
+  - this instruction creates a `CMakeLists.txt`, a `main` directory, `CMakeLists.txt` inside this directory, and `<project-name>.c` file, in my case `esp_gpio_test.c`.
 6. to make includes work, we have to set the includePath setting
   - there should be a driectory called `.vscode` next to the project directory, and there is a file called `c_cpp_properties.json` in it.
   - in this file we can append the `includePath` section if needed
-  - `/home/geri/dev/esp-idf/**` line adds the IDF directory
+  - `/home/<username>/dev/esp-idf/**` line adds the IDF directory
   - now includes should work (and ctr + LMB helps to track)
 7. To build, the working directory should be the one containing, the main source file
 8. build is done via `idf.py build` command
@@ -154,3 +154,66 @@ These settings are to set bash as default shell. (this move might be temporary d
 Using the method described above, I have created a simple task, which initialized a simple GPIO port, and sets it to high level.
 
 No errors occurred.
+
+## 05/04/21
+
+### Problems with VS Code includes.
+I have encountered a minor error in VS Code. A specific file, called sys/reent.h cannot be opened. Compiler doesn't seems to care much about it, only the editor.
+
+Found a solution:
+
+I inserted the following two lines into c_cpp_properties.json:
+``` JSON
+
+"compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
+"compileCommands": "${workspaceFolder}/esp_i2c_test/build/compile_commands.json",
+
+```
+
+Now no errors shown. I have no clue what these lines done. Probably fixed some path issues.
+
+source:
+https://www.esp32.com/viewtopic.php?f=13&t=16585
+
+### Serial communication
+
+Found an easy way with `ESP_LOGI()`. This is a define of some sort, but available to send minimal data through serial port, which can be monitored with `idf.py monitor`.
+This might be useful when debugging low level peripherals.
+
+Watchdog has been turned off, for development purposes. It can be done by executing `idf.py menuconfig` command, then select Component config -> ESP System Settings, in which the `Interrupt watchdog` and `Initialize Task Watchdog Timer on startup` options can be disabled.
+
+### I2C project:
+
+I have initialized a new project to test I2C behavior in ESP32. For the time being, I will concentrate on the master side of the communication. The main sequence of the I2C usage is this:
+
+  - create initialization struct (`i2c_config_t`)
+  - set mode, SDA-SCL signal pins, and pullups
+  - in case of a master device, we can set the clk speed as well
+  - we need to call two functions:
+    - `i2c_param_config()` where you select the device (called i2c port)
+    - `i2c_driver_install()` where you install the driver for the specific device (I am not sure what this does)
+  - we set the sequence up by the following:
+    - i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+      - here we create a handler for the communication
+      - this is a `void*` typedef inside, I presume the whole sequence
+    - i2c_master_start();
+      - adds the start bit at the beginning
+    - i2c_master_write_byte();
+      - writes an entire byte to the sequence, you can use this to address a device on the bus.
+      - in the arguments list we can decide if we want to have an ACK signal at the end
+    - i2c_master_read();
+      - this one is self-explanatory, reads data from the bus
+      - in the arguments we can tell the length of the data, as well as provide a variable to store it
+    - i2c_master_stop();
+      - puts a stop bit at the end
+    - i2c_master_cmd_begin();
+      - starts the sequence by sending all queued commands.
+      - this function starts the communication, and as long as a command presents, it will continue sending it.
+      - we can stop the sequence by calling th next function:
+    - i2c_cmd_link_delete();
+      - empties queue and stops transmitting
+
+I2C Bus and the device seems working. Some problems occurred at the addressing, the correct way is `(<base address in 8 bit> | I2C_MASTER_READ)` as `i2c_master_read()`s argument.
+The LM75 requires at least 300ms to reload measured data into data register, therefore we need at least 300 ms between requests. I have not found a better solution than pack the whole method into one function, and call it in a whiletrue with delays.
+
+At least one peripheral is working with ESP already.
