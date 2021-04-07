@@ -244,3 +244,44 @@ Init sequence also got measured:
 | 0     | 001 0000 | 0   | 0   | 0000 0100      | 0   | 0000 0000  | 0   | 0000 0000  | 0   | 1   |
 
 And it seems correct. I am suspicious about the repeated start signal.
+
+Small progress has been made. With the following function, I was able to read the measured light data correctly, at least most of the time.
+
+``` C
+
+void readVEML (uint8_t* data, uint8_t size){
+
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VEML_ADDR | I2C_MASTER_WRITE), true);
+    i2c_master_write_byte(cmd, VEML_COMMAND, true);
+
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VEML_ADDR | I2C_MASTER_READ), true);
+    i2c_master_read(cmd, data, size, I2C_MASTER_ACK);
+
+    i2c_master_stop(cmd);
+
+    i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_PERIOD_MS);
+    i2c_cmd_link_delete(cmd);
+
+    return;
+}
+
+```
+Sometimes, it just breaks down, no matter what. I also experience huge desynchronisation in the program. I have configured a LED to blink every time when the main loop is executed, and it's a mess.
+
+It seems that the issue was the incorrect define as the last argument of `i2x_master_read`, now it works most of the time.
+
+I have increased the maximum wait ticks from `1000 / portTICK_PERIOD_MS` to `10000 / portTICK_PERIOD_MS`, now the delays seem much larger. It's worth checking out.
+
+Found a way to debug:
+
+``` C
+ESP_LOGE(TAG,"Error is: %s", esp_err_to_name(error));
+```
+
+![](.pic/I2C_TIMEOUT_ERROR.png)
+
+It seems, somehow I managed to create a timeout error. At TIMEOUT the variable doesn't change.
