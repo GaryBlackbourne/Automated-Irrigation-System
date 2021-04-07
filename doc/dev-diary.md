@@ -285,3 +285,35 @@ ESP_LOGE(TAG,"Error is: %s", esp_err_to_name(error));
 ![](.pic/I2C_TIMEOUT_ERROR.png)
 
 It seems, somehow I managed to create a timeout error. At TIMEOUT the variable doesn't change.
+
+Finally I have made a working read function with the following code:
+
+``` C
+
+void readVEML (uint8_t* data, uint8_t size){
+
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VEML_ADDR | I2C_MASTER_WRITE), true);
+    i2c_master_write_byte(cmd, VEML_COMMAND, true);
+
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VEML_ADDR | I2C_MASTER_READ), true);
+    i2c_master_read(cmd, data, 1, I2C_MASTER_ACK);
+    i2c_master_read_byte(cmd, data+1, I2C_MASTER_NACK);
+
+    i2c_master_stop(cmd);
+
+    esp_err_t error2 = i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_RATE_MS);
+    i2c_cmd_link_delete(cmd);
+
+    //ESP_LOGE(TAG,"Error Command %s", esp_err_to_name(error1));
+    ESP_LOGE(TAG,"Error : %s", esp_err_to_name(error2));
+
+    return;
+}
+
+```
+
+It's working 97% of the time. Random ESP_TIMEOUT, and ESP_FAIL errors still happen, but rarely. 
