@@ -217,3 +217,30 @@ I2C Bus and the device seems working. Some problems occurred at the addressing, 
 The LM75 requires at least 300ms to reload measured data into data register, therefore we need at least 300 ms between requests. I have not found a better solution than pack the whole method into one function, and call it in a whiletrue with delays.
 
 At least one peripheral is working with ESP already.
+
+
+## 07/04/21
+
+I tried to get the I2C working today on the VEML7700 but no success yet. I measured both I2C buses, and got these results, when tried to analyze the signal:
+
+![](.pic/I2C_VEML_READ_SIG.png)
+
+`0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 1`
+
+And I decoded it like this:
+
+| start | address | R/W | ACK | command code  | ACK | data 1    | ACK | data 2    | ACK | stop |
+| --- | --- |  --- | --- |  --- | --- |  --- | --- |  --- | --- | --- |
+| 0     | 001 0000 | 0   | 0   | 0000 0100      | 0   | 1111 1111  | 0   | 1111 1111  | 0   | 1   |
+
+Problem was a missing restart signal. This is still not solved.
+
+Init sequence also got measured:
+
+![](.pic/I2C_VEML_READ_SIG.png)
+
+| start | address | R/W | ACK | Command code | ACK | data 1    | ACK | data 2    | ACK | stop |
+| --- | --- |  --- | --- |  --- | --- |  --- | --- |  --- | --- | --- |
+| 0     | 001 0000 | 0   | 0   | 0000 0100      | 0   | 0000 0000  | 0   | 0000 0000  | 0   | 1   |
+
+And it seems correct. I am suspicious about the repeated start signal.
