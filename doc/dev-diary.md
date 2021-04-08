@@ -25,7 +25,7 @@ the board is manufactured, and measured, results:
 ### Goal:
 
 The final goal is to make a system which can be set up in a domestic environment. The system consists of two main parts:
-- node modules, which are to communicate with the core unit, recieving instructions, and watering plants. The applied controller is an ESP32.
+- node modules, which are to communicate with the core unit, receiving instructions, and watering plants. The applied controller is an ESP32.
 
 - Core module, which is most likely a raspberry pi taking care of any type of user input, and controlling the nodes.
 
@@ -36,7 +36,7 @@ Several projects have been created using simplicity studio. The main goal is to 
 The last couple days I was struggling with PCNT configuration and timer configuration.
 I2C configuration was done through the simplicity studios built in configurator. With some help, I was able to get I2C working.
 
-Pulse counter is however irresponsive in the main project. I decided to launch a sample project where everything is configured properly. The results was good, the peripheral was working as intended.
+Pulse counter is however unresponsive in the main project. I decided to launch a sample project where everything is configured properly. The results was good, the peripheral was working as intended.
 
 I have built an external square signal generator from an ESP32 for testing purposes, using arduino framework, with platformIO. (This framework is easy to use, and platformIO is an easy to use, comfortable tool) This small 'module' is generating a low frequency square signal, and makes it easier to setup a new peripheral.
 
@@ -72,7 +72,7 @@ The ESP32 uses freeRTOS system, which is preinstalled. This might come handy whe
 
 Espressif controllers can be developed with Arduino IDE, there own IDE, or platformIO. The choice for this project is platformIO, because of the comfortable code completion, function tracking and compatibility with both frameworks (Arduino / Espressif-SDK).
 
-Minor problems occcured during the first compile, after getting used to the environment problems were solved.
+Minor problems occurred during the first compile, after getting used to the environment problems were solved.
 A basic project was created, testing GPIO-s with a 'blink' functionality.
 
 
@@ -166,7 +166,7 @@ I inserted the following two lines into c_cpp_properties.json:
 ``` JSON
 
 "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp32-elf/esp-2020r3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
-"compileCommands": "${workspaceFolder}/esp_i2c_test/build/compile_commands.json",
+"compileCommands": "${workspaceFolder}/<your-project-directory>/build/compile_commands.json",
 
 ```
 
@@ -316,4 +316,45 @@ void readVEML (uint8_t* data, uint8_t size){
 
 ```
 
-It's working 97% of the time. Random ESP_TIMEOUT, and ESP_FAIL errors still happen, but rarely. 
+It's working 97% of the time. Random ESP_TIMEOUT, and ESP_FAIL errors still happen, but rarely.
+
+### 08/04/12
+
+Today I looked into the PCNT modules setup function, and struct. It worked at first try!  A surprise to be sure, but a welcome one. The init phase goes like any other, we have an init struct, set our parameters then call an init function, (or config function to be precise).
+
+PCNT init struct contains the following data:
+
+``` C
+pcnt_config_t pcntInitStruct = {
+        .pulse_gpio_num = GPIO_NUM_22,
+        .ctrl_gpio_num = GPIO_NUM_23,
+        .lctrl_mode = PCNT_MODE_KEEP,
+        .hctrl_mode = PCNT_MODE_KEEP,
+        .pos_mode = PCNT_COUNT_INC,
+        .neg_mode = PCNT_COUNT_DIS,
+        .counter_h_lim = PCNT_LIMIT_MAX,
+        .counter_l_lim = 0,
+        .unit = PCNT_UNIT_0,
+        .channel = PCNT_CHANNEL_0
+    };
+```
+I initialized everything that is defined in the struct with these parameters. Most of them are defines in the `pcnt_types.h` except `PCNT_LIMIT_MAX` which i have defined as 65535 (0xFFFF).
+
+the PCNT module can be controlled easily with the following functions:
+- `pcnt_get_counter_value`
+- `pcnt_counter_pause`
+- `pcnt_counter_resume`
+- `pcnt_counter_clear`
+
+They do exactly what their name tells.
+Using an unsigned variable might be useful in the future, because there is no point in negative values in our case.
+
+Measurements represent the expected values:
+
+![](.pic/PCNT_SIGNAL.png)
+
+My signal has 351 kHz frequency which means, it should be around 351-2 pulses in one millisecond.
+
+![](.pic/PCNT_OUTPUT.png)
+
+And the given output is exactly matching our expectations. Yaay!
