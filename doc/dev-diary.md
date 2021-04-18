@@ -109,8 +109,8 @@ The `export.sh` code was copied from installation manual, and does all the setup
 If I find a way to solve this issue, I change my shell in VS Code.
 
 ### New project initialization:
-1. create a directory
-2. save as workspace, then setup the workspace terminal with the following JSON:
+1. Create a directory
+2. Save as workspace, then setup the workspace terminal with the following JSON:
 
 ``` JSON
 {
@@ -127,10 +127,12 @@ If I find a way to solve this issue, I change my shell in VS Code.
   }
 }
 ```
+(The JSON is the created workspace file : `<project-name>.code-workspace`).
+
 These settings are to set bash as default shell. (this move might be temporary due to bash / fish support difference mentioned above)
-3. after saving workspace, allow it to modify embedded shell
-4. open the terminal, and write `idfinit` to initialize shell for development
-5. setup project, using `idf.py create-project`
+3. After saving workspace, allow it to modify embedded shell
+4. Open the terminal, and write `idfinit` to initialize shell for development
+5. Setup project, using `idf.py create-project`
   - `--help` is useful argument to find out how to do that
   - `idf.py create-project <project-name> -p . ` will create a new project directory in current folder, and initialize project. The output should be:
 
@@ -140,14 +142,16 @@ These settings are to set bash as default shell. (this move might be temporary d
 
   ```
   - this instruction creates a `CMakeLists.txt`, a `main` directory, `CMakeLists.txt` inside this directory, and `<project-name>.c` file, in my case `esp_gpio_test.c`.
-6. to make includes work, we have to set the includePath setting
+
+6. For the following steps to work, build the yet empty project with `idf.py build` command in the terminal, this creates `.vscode` and `c_cpp_properties.json`.
+7. To make includes work, we have to set the includePath setting
   - there should be a driectory called `.vscode` next to the project directory, and there is a file called `c_cpp_properties.json` in it.
   - in this file we can append the `includePath` section if needed
   - `/home/<username>/dev/esp-idf/**` line adds the IDF directory
   - now includes should work (and ctr + LMB helps to track)
-7. To build, the working directory should be the one containing, the main source file
-8. build is done via `idf.py build` command
-9. flash is done via `idf.py -p /dev/ttyUSB0 flash` commands
+8. To build, the working directory should be the one containing, the main source file
+9. Build is done via `idf.py build` command
+10. Flash is done via `idf.py -p /dev/ttyUSB0 flash` commands
 
 ### First handmade project
 
