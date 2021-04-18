@@ -322,7 +322,7 @@ void readVEML (uint8_t* data, uint8_t size){
 
 It's working 97% of the time. Random ESP_TIMEOUT, and ESP_FAIL errors still happen, but rarely.
 
-### 08/04/12
+### 08/04/21
 
 Today I looked into the PCNT modules setup function, and struct. It worked at first try!  A surprise to be sure, but a welcome one. The init phase goes like any other, we have an init struct, set our parameters then call an init function, (or config function to be precise).
 
@@ -362,3 +362,9 @@ My signal has 351 kHz frequency which means, it should be around 351-2 pulses in
 ![](.pic/PCNT_OUTPUT.png)
 
 And the given output is exactly matching our expectations. Yaay!
+
+## 18/04/21
+
+Today I fixed some issues with the dev-diary, and started to learn freeRTOS. A simple task will run on the ESP32 which is to read all three sensors values. For this reason I have created a new project called `AIS_node_v1`, and collected all I2C, PCNT and GPIO codes that I have written.
+
+First test was a complete success, all values a read correctly. Errors might be happening, so our next objective is to detect errors, and filter them out. 
