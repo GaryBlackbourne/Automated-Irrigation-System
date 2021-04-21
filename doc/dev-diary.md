@@ -367,4 +367,67 @@ And the given output is exactly matching our expectations. Yaay!
 
 Today I fixed some issues with the dev-diary, and started to learn freeRTOS. A simple task will run on the ESP32 which is to read all three sensors values. For this reason I have created a new project called `AIS_node_v1`, and collected all I2C, PCNT and GPIO codes that I have written.
 
-First test was a complete success, all values a read correctly. Errors might be happening, so our next objective is to detect errors, and filter them out. 
+First test was a complete success, all values a read correctly. Errors might be happening, so our next objective is to detect errors, and filter them out.
+
+## 20/04/21
+
+Today I wrote a simple task to execute the measurement cycle. I have some concepts about the main architecture of the nodes task system.
+
+The ESP32 uses a modified freeRTOS to run user tasks parallel to WiFi management. My concept for now is the following:
+
+- Tasks:
+  - main  -> schedules the measurement task, at 10 seconds or when comm task tells it
+  - measure  -> executes a measurement cycle
+  - comm  -> receives input from serial port and/or WiFi
+
+
+``` C
+
+static void measureTask (void* vParam){
+
+    uint8_t lm_data[2] = {0,0};
+    uint8_t veml_data[2] = {13,15};
+
+    while (1)
+    {
+
+        pcnt_counter_clear(PCNT_UNIT_0);
+        vTaskDelay(100/portTICK_PERIOD_MS);   
+        pcnt_get_counter_value(PCNT_UNIT_0, (int16_t*)&cnt);
+
+
+        readLM(lm_data, 2);
+        temperature = lm_data[0];
+
+        readVEML(veml_data, 2);
+        light = (256*veml_data[1]+veml_data[0]);
+
+
+        // temporary:
+        ESP_LOGI(TAG, "measured values %d, %d, %d", temperature, light, cnt);
+
+    }  
+}
+```
+This is the measurement task. `vTaskDelay()` and `vTaskDelayUntil()` functions seems to be equivalent in use in this case.
+
+Default timing will be done with suspended state. Measurement task has been appended with a self suspending function, (`vTaskSuspend(NULL)`) and the main task will, resume the task with `vTaskResume(<tskHandle>)`.
+
+Added mutexes for data variables, and a measurement control boolean variable. A new task has been created, named main. for the 10 second timing, I use a software timer.
+
+For reasons I have not yet found, I am getting continuous chip resets. The problem might be with the mutexes, according to the debug logs.
+
+
+## 21/04/21
+
+Quick log for today, because I am tired. The improvements and modifications that I made:
+
+  - All `ESP_LOGI` / `ESP_LOGE` macros are deleted, from now on we only use `printf()` which happened to be working for some reason.
+  - mutexes are deleted as long as the main project has serious problems with task management
+  - watchdogs will remain a problem so they are still turned off in the project
+  - `xTaskCreate()` functions are expecting to get handler pointer which caused a metric ton of problems, this is now fixed.
+  - unused PCNT counter event values are set to zero, because they were producing errors every startup (doesn't seems to affect the whole progression tho)
+  - started an uart project to learn uart configuration, but no need to it, so the project is abandoned for the time being
+  - tweaked delay time to 1 sec, for debug purposes
+  - increased stack sizes to `2048`, from original `configMINIMAL_STACK_SIZE`
+  - `app_main()` task is suspended, after creating the three tasks (`main`, `measure`, `timer`)
