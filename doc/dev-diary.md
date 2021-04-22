@@ -322,7 +322,7 @@ void readVEML (uint8_t* data, uint8_t size){
 
 It's working 97% of the time. Random ESP_TIMEOUT, and ESP_FAIL errors still happen, but rarely.
 
-### 08/04/21
+## 08/04/21
 
 Today I looked into the PCNT modules setup function, and struct. It worked at first try!  A surprise to be sure, but a welcome one. The init phase goes like any other, we have an init struct, set our parameters then call an init function, (or config function to be precise).
 
@@ -431,3 +431,24 @@ Quick log for today, because I am tired. The improvements and modifications that
   - tweaked delay time to 1 sec, for debug purposes
   - increased stack sizes to `2048`, from original `configMINIMAL_STACK_SIZE`
   - `app_main()` task is suspended, after creating the three tasks (`main`, `measure`, `timer`)
+
+## 22/04/21
+
+Today I reworked the task structure. Task `measureTask` task is no longer suspends itself after every iteration, instead it delays itself for a small amount of time. Task `mainTask` is responsible for reading the measured data and calculate an average from every 10 measured value. For easier data management I have created a struct:
+
+``` C
+typedef struct {
+    uint16_t cnt;
+    uint16_t light;
+    uint8_t temperature;
+}data_pack;
+
+```
+
+This struct contains all measured data that we have to manage.
+
+Inter-task communication is done with a queue (default freeRTOS API). The Queue is 10 long, but it is an overkill, because main can drain all data faster than measure can load.
+
+Mutexes are removed because there is no global variable needs to be accessed simultaneously.
+
+I also created a function to calculate averages (`xAverage`) but it doesn't give accurate results. 
