@@ -451,4 +451,19 @@ Inter-task communication is done with a queue (default freeRTOS API). The Queue 
 
 Mutexes are removed because there is no global variable needs to be accessed simultaneously.
 
-I also created a function to calculate averages (`xAverage`) but it doesn't give accurate results. 
+I also created a function to calculate averages (`xAverage`) but it doesn't give accurate results.
+
+## 23/04/21
+
+The average counter function was providing false data because printf() received wrong arguments firs time, and some overflow error happened as well. After that fixed and some small simplification in the average counting function, we are getting correct results.
+
+`mainTask` is renamed to be `processTask` from now on, it represents the tasks purpose better.
+
+Measurements control is restored to the software timer, therefore more precise cycles can be achieved:
+  - `measureTask` is now suspends itself (again)
+  - timer is resuming it from a callback function
+
+I have looked through the code, and deleted unnecessary segments like mutex declarations, unused global variables etc.
+
+Defines have been created for further readability, and queue length has been decreased to 3, because 10 length queue was an overkill, and 3 is just enough.
+To be fair one is enough, because with default configuration, the queue doesn't hold more than one item at any time. 3 is only for security.
