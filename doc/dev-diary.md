@@ -467,3 +467,10 @@ I have looked through the code, and deleted unnecessary segments like mutex decl
 
 Defines have been created for further readability, and queue length has been decreased to 3, because 10 length queue was an overkill, and 3 is just enough.
 To be fair one is enough, because with default configuration, the queue doesn't hold more than one item at any time. 3 is only for security.
+
+## 05/05/21
+
+Finally we have a working and more or less well functional prototype. I have found a program called `screen` which is more comfortable in development to use. with the command : `screen /dev/ttyUSB0 115200` I can easily monitor the serial port while the integrated shell in VSCode remains untouched and more comfortable to work with.
+I have also moved credentials to a different header file, this way, the user can change it on its own, before compile, and my credentials are not stored publicly on github.
+
+A bug has also been fixed about the JSON standard (As of yet, I have used single quotes instead of dual ones). Now the transmitted JSON string is correct.
