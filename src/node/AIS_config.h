@@ -28,10 +28,10 @@
 #define measureTsk_PRIORITY (tskIDLE_PRIORITY + 2)
 #define processTsk_PRIORITY (tskIDLE_PRIORITY + 1)
 
-#define meas_TIME_MS 500                            // 0,5 sec
-#define process_DELAY_MS 10
-#define meas_LENGTH 10
-#define queue_LENGTH  3
+#define meas_TIME_MS 10000                          // 0,5 sec
+#define process_DELAY_MS 10                         // data processing tasks delay value in miliseconds
+#define meas_LENGTH 10                              // the amount of measurements one cycle contains (average will be the measured value)
+#define queue_LENGTH  3                             
 
 
 #define WIFI_CONNECTED_BIT BIT0
